@@ -13,7 +13,7 @@ function App() {
     <>
       <Container>
         <Column>
-          <Row>
+          <BigestRow>
             <Column>
               <Row>
                 <CaseSection>
@@ -26,24 +26,26 @@ function App() {
                 </CaseSection>
               </Row>
               <Row>
-                <CardOverview bgColor="#00c39a" textColor="white">
-                  <ColumnCardOverview>
-                    <TitleOverview>1+</TitleOverview>
-                    <SubTitleOverview>Years Experience</SubTitleOverview>
-                  </ColumnCardOverview>
-                </CardOverview>
-                <CardOverview bgColor="#ffbf3c" textColor="black">
-                  <ColumnCardOverview>
-                    <TitleOverview>🐱‍🏍</TitleOverview>
-                    <SubTitleOverview>Fullstack Developer</SubTitleOverview>
-                  </ColumnCardOverview>
-                </CardOverview>
-                <CardOverview bgColor="#fe6d79" textColor="white">
-                  <ColumnCardOverview>
-                    <TitleOverview>50+</TitleOverview>
-                    <SubTitleOverview>Repositories</SubTitleOverview>
-                  </ColumnCardOverview>
-                </CardOverview>
+                <OverviewRow>
+                  <CardOverview bgColor="#00c39a" textColor="white">
+                    <ColumnCardOverview>
+                      <TitleOverview>1+</TitleOverview>
+                      <SubTitleOverview>Years Experience</SubTitleOverview>
+                    </ColumnCardOverview>
+                  </CardOverview>
+                  <CardOverview bgColor="#ffbf3c" textColor="black">
+                    <ColumnCardOverview>
+                      <TitleOverview>🐱‍🏍</TitleOverview>
+                      <SubTitleOverview>Fullstack Developer</SubTitleOverview>
+                    </ColumnCardOverview>
+                  </CardOverview>
+                  <CardOverview bgColor="#fe6d79" textColor="white">
+                    <ColumnCardOverview>
+                      <TitleOverview>50+</TitleOverview>
+                      <SubTitleOverview>Repositories</SubTitleOverview>
+                    </ColumnCardOverview>
+                  </CardOverview>
+                </OverviewRow>
               </Row>
             </Column>
 
@@ -55,7 +57,7 @@ function App() {
                   </NameText>
                 </CaseSection>
               </Row>
-              <Row>
+              <LittleRow>
                 <ImageFrame>
                   <ProfileImage src={profilPhoto} />
                 </ImageFrame>
@@ -112,9 +114,9 @@ function App() {
                     </IconCaseSection>
                   </Row>
                 </Column>
-              </Row>
+              </LittleRow>
             </Column>
-          </Row>
+          </BigestRow>
 
           <Row>
             <CaseSection>
@@ -136,7 +138,15 @@ function App() {
 const Container = styled.div`
   width: 100%;
   height: fit-content;
-  padding: 48px 240px 0 240px;
+  padding: 48px 48px 48px 48px;
+
+  @media (min-width: 1024px) {
+    padding: 48px 120px 48px 120px;
+  }
+
+  @media (min-width: 1536px) {
+    padding: 48px 240px 48px 240px;
+  }
 `;
 
 const Row = styled.div`
@@ -156,6 +166,30 @@ const Column = styled.div`
   height: fit-content;
   gap: 18px;
   flex-grow: 1;
+`;
+
+const BigestRow = styled(Column)`
+  flex-direction: column;
+
+  @media (min-width: 1536px) {
+    flex-direction: row;
+  }
+`;
+
+const LittleRow = styled(Row)`
+  flex-direction: column;
+
+  @media (min-width: 1536px) {
+    flex-direction: row;
+  }
+`;
+
+const OverviewRow = styled(Row)`
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
 `;
 
 const ColumnCardOverview = styled.div`
@@ -181,10 +215,18 @@ const CaseSection = styled.div`
 
 const SlagText = styled.p`
   position: relative;
-  font-size: 68px;
+  font-size: 48px;
   font-weight: 700;
   color: white;
   margin: 0;
+
+  @media (min-width: 768px) {
+    font-size: 68px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 68px;
+  }
 `;
 
 const HireMeButton = styled.a`
@@ -244,7 +286,7 @@ const CardOverview = styled.div<{
   bgColor?: "#00c39a" | "#ffbf3c" | "#fe6d79";
   textColor?: "white" | "black";
 }>`
-  width: 100%;
+  /* width: 100%; */
   /* height: 240px; */
   border-radius: 8px;
   background-color: ${(props) => props.bgColor ?? "white"};
@@ -253,11 +295,19 @@ const CardOverview = styled.div<{
   justify-content: center;
   align-items: center;
   padding: 24px;
+
+  @media (min-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const TitleOverview = styled.div`
-  font-size: 72px;
+  font-size: 32px;
   font-weight: 700;
+
+  @media (min-width: 768px) {
+    font-size: 72px;
+  }
 `;
 
 const SubTitleOverview = styled.p`
@@ -265,6 +315,10 @@ const SubTitleOverview = styled.p`
   font-size: larger;
   font-weight: 700;
   text-align: center;
+
+  /* @media (min-width: 768px) {
+    font-size: larger;
+  } */
 `;
 
 const MapIframe = styled.iframe`
